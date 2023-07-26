@@ -1,0 +1,177 @@
+<?xml version="1.0"?>
+<AlteryxDocument yxmdVer="2022.3">
+  <Nodes>
+    <Node ToolID="2">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileInput.DbFileInput">
+        <Position x="54" y="54" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Passwords />
+          <File RecordLimit="" FileFormat="18">odb:Provider=SQLOLEDB.1;Integrated Security=SSPI;Persist Security Info=False;Initial Catalog=Part Two;Data Source=DESKTOP-NNKF398\MSSQLSERVER02;Use Procedure for Prepare=1;Auto Translate=True;Packet Size=4096;Workstation ID=DESKTOP-NNKF398;Use Encryption for Data=False;Tag with column collation when possible=False|||select dbo.[Alteryx-SSIS Part Two].Address,
+	dbo.[Alteryx-SSIS Part Two].[Location TYPE],
+	dbo.[Alteryx-SSIS Part Two].[OCC ON Day],
+	dbo.[Alteryx-SSIS Part Two].[OCC ON Month],
+	dbo.[Alteryx-SSIS Part Two].[OCC ON Year] 
+from dbo.[Alteryx-SSIS Part Two]</File>
+          <FormatSpecificOptions>
+            <PreSQL />
+            <PreSQLOnConfig>True</PreSQLOnConfig>
+            <NoProgress>False</NoProgress>
+            <CacheData>False</CacheData>
+            <TableStyle>Quoted</TableStyle>
+            <ReadUncommitted>False</ReadUncommitted>
+            <PostSQL />
+          </FormatSpecificOptions>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>Source=DESKTOP-NNKF398\MSSQLSERVER02
+Catalog=Part Two
+Query=select dbo.[Alteryx-SSIS Par...</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="Address" size="255" source="File: odb:Provider=SQLOLEDB.1;Integrated Security=SSPI;Persist Security Info=False;Initial Catalog=Part Two;Data Source=DESKTOP-NNKF398\MSSQLSERVER02;Use Procedure for Prepare=1;Auto Translate=True;Packet Size=4096;Workstation ID=DESKTOP-NNKF398;Use Encryption for Data=False;Tag with column collation when possible=False|||select dbo.[Alteryx-SSIS Part Two].Address,&#xA;	dbo.[Alteryx-SSIS Part Two].[Location TYPE],&#xA;	dbo.[Alteryx-SSIS Part Two].[OCC ON Day],&#xA;	dbo.[Alteryx-SSIS Part Two].[OCC ON Month],&#xA;	dbo.[Alteryx-SSIS Part Two].[OCC ON Year] &#xA;from dbo.[Alteryx-SSIS Part Two]" type="V_WString" />
+            <Field name="Location TYPE" size="255" source="File: odb:Provider=SQLOLEDB.1;Integrated Security=SSPI;Persist Security Info=False;Initial Catalog=Part Two;Data Source=DESKTOP-NNKF398\MSSQLSERVER02;Use Procedure for Prepare=1;Auto Translate=True;Packet Size=4096;Workstation ID=DESKTOP-NNKF398;Use Encryption for Data=False;Tag with column collation when possible=False|||select dbo.[Alteryx-SSIS Part Two].Address,&#xA;	dbo.[Alteryx-SSIS Part Two].[Location TYPE],&#xA;	dbo.[Alteryx-SSIS Part Two].[OCC ON Day],&#xA;	dbo.[Alteryx-SSIS Part Two].[OCC ON Month],&#xA;	dbo.[Alteryx-SSIS Part Two].[OCC ON Year] &#xA;from dbo.[Alteryx-SSIS Part Two]" type="V_WString" />
+            <Field name="OCC ON Day" size="255" source="File: odb:Provider=SQLOLEDB.1;Integrated Security=SSPI;Persist Security Info=False;Initial Catalog=Part Two;Data Source=DESKTOP-NNKF398\MSSQLSERVER02;Use Procedure for Prepare=1;Auto Translate=True;Packet Size=4096;Workstation ID=DESKTOP-NNKF398;Use Encryption for Data=False;Tag with column collation when possible=False|||select dbo.[Alteryx-SSIS Part Two].Address,&#xA;	dbo.[Alteryx-SSIS Part Two].[Location TYPE],&#xA;	dbo.[Alteryx-SSIS Part Two].[OCC ON Day],&#xA;	dbo.[Alteryx-SSIS Part Two].[OCC ON Month],&#xA;	dbo.[Alteryx-SSIS Part Two].[OCC ON Year] &#xA;from dbo.[Alteryx-SSIS Part Two]" type="V_WString" />
+            <Field name="OCC ON Month" size="255" source="File: odb:Provider=SQLOLEDB.1;Integrated Security=SSPI;Persist Security Info=False;Initial Catalog=Part Two;Data Source=DESKTOP-NNKF398\MSSQLSERVER02;Use Procedure for Prepare=1;Auto Translate=True;Packet Size=4096;Workstation ID=DESKTOP-NNKF398;Use Encryption for Data=False;Tag with column collation when possible=False|||select dbo.[Alteryx-SSIS Part Two].Address,&#xA;	dbo.[Alteryx-SSIS Part Two].[Location TYPE],&#xA;	dbo.[Alteryx-SSIS Part Two].[OCC ON Day],&#xA;	dbo.[Alteryx-SSIS Part Two].[OCC ON Month],&#xA;	dbo.[Alteryx-SSIS Part Two].[OCC ON Year] &#xA;from dbo.[Alteryx-SSIS Part Two]" type="V_WString" />
+            <Field name="OCC ON Year" size="16777216" source="File: odb:Provider=SQLOLEDB.1;Integrated Security=SSPI;Persist Security Info=False;Initial Catalog=Part Two;Data Source=DESKTOP-NNKF398\MSSQLSERVER02;Use Procedure for Prepare=1;Auto Translate=True;Packet Size=4096;Workstation ID=DESKTOP-NNKF398;Use Encryption for Data=False;Tag with column collation when possible=False|||select dbo.[Alteryx-SSIS Part Two].Address,&#xA;	dbo.[Alteryx-SSIS Part Two].[Location TYPE],&#xA;	dbo.[Alteryx-SSIS Part Two].[OCC ON Day],&#xA;	dbo.[Alteryx-SSIS Part Two].[OCC ON Month],&#xA;	dbo.[Alteryx-SSIS Part Two].[OCC ON Year] &#xA;from dbo.[Alteryx-SSIS Part Two]" type="V_WString" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDbFileInput" />
+    </Node>
+    <Node ToolID="3">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
+        <Position x="198" y="54" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <OrderChanged value="False" />
+          <CommaDecimal value="False" />
+          <SelectFields>
+            <SelectField field="Address" selected="True" />
+            <SelectField field="Location TYPE" selected="True" />
+            <SelectField field="*Unknown" selected="False" />
+          </SelectFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSelect" />
+    </Node>
+    <Node ToolID="5">
+      <GuiSettings Plugin="AlteryxSpatialPluginsGui.Summarize.Summarize">
+        <Position x="354" y="54" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <SummarizeFields>
+            <SummarizeField field="Address" action="GroupBy" rename="Address" />
+            <SummarizeField field="Location TYPE" action="GroupBy" rename="Location TYPE" />
+          </SummarizeFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxSpatialPluginsEngine.dll" EngineDllEntryPoint="AlteryxSummarize" />
+    </Node>
+    <Node ToolID="7">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileOutput.DbFileOutput">
+        <Position x="498" y="54" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <File MaxRecords="" FileFormat="18">odb:Provider=SQLOLEDB.1;Integrated Security=SSPI;Persist Security Info=False;Initial Catalog=DIM One;Data Source=DESKTOP-NNKF398\MSSQLSERVER02;Use Procedure for Prepare=1;Auto Translate=True;Packet Size=4096;Workstation ID=DESKTOP-NNKF398;Use Encryption for Data=False;Tag with column collation when possible=False|||Time</File>
+          <Passwords />
+          <Disable>False</Disable>
+          <FormatSpecificOptions>
+            <TransactionSize>0</TransactionSize>
+            <IgnoreDropTableSQLErrors>False</IgnoreDropTableSQLErrors>
+            <PostSQL />
+            <TableStyle>Quoted</TableStyle>
+            <PreSQL />
+            <TransactionMessages>False</TransactionMessages>
+            <OutputOption>Create</OutputOption>
+          </FormatSpecificOptions>
+          <MultiFile value="False" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>Source=DESKTOP-NNKF398\MSSQLSERVER02
+Catalog=DIM One
+Query=Time</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDbFileOutput" />
+    </Node>
+  </Nodes>
+  <Connections>
+    <Connection>
+      <Origin ToolID="2" Connection="Output" />
+      <Destination ToolID="3" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="3" Connection="Output" />
+      <Destination ToolID="5" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="5" Connection="Output" />
+      <Destination ToolID="7" Connection="Input" />
+    </Connection>
+  </Connections>
+  <Properties>
+    <Memory default="True" />
+    <GlobalRecordLimit value="0" />
+    <TempFiles default="True" />
+    <Annotation on="True" includeToolName="False" />
+    <ConvErrorLimit value="10" />
+    <ConvErrorLimit_Stop value="False" />
+    <CancelOnError value="False" />
+    <DisableBrowse value="False" />
+    <EnablePerformanceProfiling value="False" />
+    <RunWithE2 value="True" />
+    <PredictiveToolsCodePage value="1252" />
+    <DisableAllOutput value="False" />
+    <ShowAllMacroMessages value="False" />
+    <ShowConnectionStatusIsOn value="True" />
+    <ShowConnectionStatusOnlyWhenRunning value="True" />
+    <ZoomLevel value="0" />
+    <LayoutType>Horizontal</LayoutType>
+    <MetaInfo>
+      <NameIsFileName value="True" />
+      <Name>New Workflow3_Autosave</Name>
+      <Description />
+      <RootToolName />
+      <ToolVersion />
+      <ToolInDb value="False" />
+      <CategoryName />
+      <SearchTags />
+      <Author />
+      <Company />
+      <Copyright />
+      <DescriptionLink actual="" displayed="" />
+      <Example>
+        <Description />
+        <File />
+      </Example>
+      <WorkflowId value="2f007431-b3c6-493b-9f20-47285a80339f" />
+      <Telemetry>
+        <PreviousWorkflowId value="44671951-82f3-43aa-801d-5de2324bb388" />
+        <OriginWorkflowId value="44671951-82f3-43aa-801d-5de2324bb388" />
+      </Telemetry>
+    </MetaInfo>
+    <Events>
+      <Enabled value="True" />
+    </Events>
+  </Properties>
+</AlteryxDocument>

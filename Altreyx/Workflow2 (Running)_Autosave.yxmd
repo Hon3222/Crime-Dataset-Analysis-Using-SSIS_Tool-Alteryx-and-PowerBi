@@ -1,0 +1,305 @@
+<?xml version="1.0"?>
+<AlteryxDocument yxmdVer="2022.3">
+  <Nodes>
+    <Node ToolID="1">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileInput.DbFileInput">
+        <Position x="54" y="54" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Passwords />
+          <File OutputFileName="" RecordLimit="" SearchSubDirs="False" FileFormat="25">C:\Users\hanyy\OneDrive\Desktop\Altreyx\Altreyx-Crime Dataset.xlsx|||`Alteryx-Crime Dataset$`</File>
+          <FormatSpecificOptions>
+            <FirstRowData>False</FirstRowData>
+            <ImportLine>1</ImportLine>
+          </FormatSpecificOptions>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>Altreyx-Crime Dataset.xlsx
+Query=`Alteryx-Crime Dataset$`</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="Crime ID" size="255" source="File: C:\Users\hanyy\OneDrive\Desktop\Altreyx\Altreyx-Crime Dataset.xlsx|||`Alteryx-Crime Dataset$`" type="V_String" />
+            <Field name="OCCURRED ON" size="255" source="File: C:\Users\hanyy\OneDrive\Desktop\Altreyx\Altreyx-Crime Dataset.xlsx|||`Alteryx-Crime Dataset$`" type="V_String" />
+            <Field name="OCCURRED TO" size="255" source="File: C:\Users\hanyy\OneDrive\Desktop\Altreyx\Altreyx-Crime Dataset.xlsx|||`Alteryx-Crime Dataset$`" type="V_String" />
+            <Field name="CRIME CATEGORY" size="255" source="File: C:\Users\hanyy\OneDrive\Desktop\Altreyx\Altreyx-Crime Dataset.xlsx|||`Alteryx-Crime Dataset$`" type="V_String" />
+            <Field name="Address" size="255" source="File: C:\Users\hanyy\OneDrive\Desktop\Altreyx\Altreyx-Crime Dataset.xlsx|||`Alteryx-Crime Dataset$`" type="V_String" />
+            <Field name="ZIP" source="File: C:\Users\hanyy\OneDrive\Desktop\Altreyx\Altreyx-Crime Dataset.xlsx|||`Alteryx-Crime Dataset$`" type="Double" />
+            <Field name="Location TYPE" size="255" source="File: C:\Users\hanyy\OneDrive\Desktop\Altreyx\Altreyx-Crime Dataset.xlsx|||`Alteryx-Crime Dataset$`" type="V_String" />
+            <Field name="GRID" size="255" source="File: C:\Users\hanyy\OneDrive\Desktop\Altreyx\Altreyx-Crime Dataset.xlsx|||`Alteryx-Crime Dataset$`" type="V_String" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDbFileInput" />
+    </Node>
+    <Node ToolID="4">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
+        <Position x="150" y="54" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <FormulaFields>
+            <FormulaField expression="Substring([OCCURRED ON],3,2)+&quot;-&quot;+Substring([OCCURRED ON],0,2)+&quot;-&quot;+Substring([OCCURRED ON],6,4)" field="Occurred On edited" size="255" type="V_WString" />
+            <FormulaField expression="Substring([OCCURRED TO],3,2)+&quot;-&quot;+Substring([OCCURRED TO],0,2)+&quot;-&quot;+Substring([OCCURRED TO],6,4)" field="Occurred To edited" size="255" type="V_WString" />
+            <FormulaField expression="TitleCase([CRIME CATEGORY])" field="CRIME CATEGORY" size="255" type="V_String" />
+          </FormulaFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>Occurred On edited = Substring([OCCURRED ON],3,2)+"-"+Substring([OCCURRED ON],0,...</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFormula" />
+    </Node>
+    <Node ToolID="6">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
+        <Position x="294" y="54" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <OrderChanged value="True" />
+          <CommaDecimal value="False" />
+          <SelectFields>
+            <SelectField field="ZIP" selected="True" type="Int64" size="8" />
+            <SelectField field="Crime ID" selected="True" type="V_WString" size="255" />
+            <SelectField field="OCCURRED ON" selected="False" type="V_WString" size="255" />
+            <SelectField field="OCCURRED TO" selected="False" />
+            <SelectField field="CRIME CATEGORY" selected="True" type="V_WString" size="255" />
+            <SelectField field="Address" selected="True" type="V_WString" size="255" />
+            <SelectField field="Location TYPE" selected="True" type="V_WString" size="255" />
+            <SelectField field="GRID" selected="True" type="V_WString" size="255" />
+            <SelectField field="Occurred On edited" selected="True" />
+            <SelectField field="Occurred To edited" selected="True" />
+            <SelectField field="*Unknown" selected="False" />
+          </SelectFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSelect" />
+    </Node>
+    <Node ToolID="14">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
+        <Position x="522" y="54" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <FormulaFields>
+            <FormulaField expression="&#xA;Substring([Occurred On edited],0,2)		" field="OCC ON Day" size="255" type="V_WString" />
+            <FormulaField expression="Substring([Occurred On edited],3,2)" field="OCC ON Month" size="255" type="V_WString" />
+            <FormulaField expression="Substring([Occurred On edited],6,4)" field="OCC ON Year" size="1073741823" type="V_WString" />
+            <FormulaField expression="ReplaceChar([CRIME CATEGORY],&quot; &quot;,&quot;_&quot;)" field="CRIME CATEGORY" size="255" type="V_WString" />
+            <FormulaField expression="ReplaceChar([Address],&quot; &quot;,&quot;_&quot;)" field="Address" size="255" type="V_WString" />
+            <FormulaField expression="ReplaceChar([GRID],&quot; &quot;,&quot;_&quot;)" field="GRID" size="255" type="V_WString" />
+            <FormulaField expression="ReplaceChar([Occurred On edited],&quot; &quot;,&quot;_&quot;)" field="Occurred On edited" size="255" type="V_WString" />
+            <FormulaField expression="ReplaceChar([Occurred To edited],&quot; &quot;,&quot;_&quot;)" field="Occurred To edited" size="255" type="V_WString" />
+            <FormulaField expression="ReplaceChar([OCC ON Day],&quot; &quot;,&quot;_&quot;)" field="OCC ON Day" size="255" type="V_WString" />
+            <FormulaField expression="ReplaceChar([OCC ON Month],&quot; &quot;,&quot;_&quot;)" field="OCC ON Month" size="255" type="V_WString" />
+            <FormulaField expression="ReplaceChar([OCC ON Year],&quot; &quot;,&quot;_&quot;)" field="OCC ON Year" size="1073741823" type="V_WString" />
+            <FormulaField expression="ReplaceChar([Location TYPE],&quot; &quot;,&quot;_&quot;)" field="Location TYPE" size="255" type="V_WString" />
+          </FormulaFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>OCC ON Day = 
+Substring([Occurred On edited],0,2)		
+OCC ON Month = Substring([Oc...</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFormula" />
+    </Node>
+    <Node ToolID="15">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Filter.Filter">
+        <Position x="642" y="54" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Expression><![CDATA[Substring([Crime ID],4,1)=='8'
+]]></Expression>
+          <Mode>Custom</Mode>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText><![CDATA[Substring([Crime ID],4,1)=='8'
+]]></DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFilter" />
+    </Node>
+    <Node ToolID="7">
+      <GuiSettings>
+        <Position x="390" y="54" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Value name="Check Box (135)">False</Value>
+          <Value name="Check Box (136)">False</Value>
+          <Value name="List Box (11)">"CRIME CATEGORY"</Value>
+          <Value name="Check Box (84)">True</Value>
+          <Value name="Check Box (117)">True</Value>
+          <Value name="Check Box (15)">False</Value>
+          <Value name="Check Box (109)">False</Value>
+          <Value name="Check Box (122)">False</Value>
+          <Value name="Check Box (53)">False</Value>
+          <Value name="Check Box (58)">False</Value>
+          <Value name="Check Box (70)">False</Value>
+          <Value name="Check Box (77)">True</Value>
+          <Value name="Drop Down (81)">title</Value>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings Macro="Cleanse.yxmc" />
+    </Node>
+    <Node ToolID="16">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileOutput.DbFileOutput">
+        <Position x="810" y="42" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <File MaxRecords="" FileFormat="18">odb:Provider=SQLOLEDB.1;Integrated Security=SSPI;Persist Security Info=False;Initial Catalog=Part One;Data Source=DESKTOP-NNKF398\MSSQLSERVER02;Use Procedure for Prepare=1;Auto Translate=True;Packet Size=4096;Workstation ID=DESKTOP-NNKF398;Use Encryption for Data=False;Tag with column collation when possible=False|||Altreyx-SSIS Part One</File>
+          <Passwords />
+          <Disable>False</Disable>
+          <FormatSpecificOptions>
+            <TransactionSize>0</TransactionSize>
+            <IgnoreDropTableSQLErrors>False</IgnoreDropTableSQLErrors>
+            <PostSQL />
+            <TableStyle>Quoted</TableStyle>
+            <AppendMap>
+              <AppendMapping mode="ByName" />
+            </AppendMap>
+            <PreSQL />
+            <TransactionMessages>False</TransactionMessages>
+            <OutputOption>Delete</OutputOption>
+          </FormatSpecificOptions>
+          <MultiFile value="False" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>Source=DESKTOP-NNKF398\MSSQLSERVER02
+Catalog=Part One
+Query=Altreyx-SSIS Part One</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDbFileOutput" />
+    </Node>
+    <Node ToolID="17">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileOutput.DbFileOutput">
+        <Position x="750" y="126" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <File MaxRecords="" FileFormat="18">odb:Provider=SQLOLEDB.1;Integrated Security=SSPI;Persist Security Info=False;Initial Catalog=Part Two;Data Source=DESKTOP-NNKF398\MSSQLSERVER02;Use Procedure for Prepare=1;Auto Translate=True;Packet Size=4096;Workstation ID=DESKTOP-NNKF398;Use Encryption for Data=False;Tag with column collation when possible=False|||Alteryx-SSIS Part Two</File>
+          <Passwords />
+          <Disable>False</Disable>
+          <FormatSpecificOptions>
+            <TransactionSize>0</TransactionSize>
+            <IgnoreDropTableSQLErrors>False</IgnoreDropTableSQLErrors>
+            <PostSQL />
+            <TableStyle>Quoted</TableStyle>
+            <PreSQL />
+            <TransactionMessages>False</TransactionMessages>
+            <OutputOption>Delete</OutputOption>
+          </FormatSpecificOptions>
+          <MultiFile value="False" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>Source=DESKTOP-NNKF398\MSSQLSERVER02
+Catalog=Part Two
+Query=Alteryx-SSIS Part Two</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDbFileOutput" />
+    </Node>
+  </Nodes>
+  <Connections>
+    <Connection>
+      <Origin ToolID="1" Connection="Output" />
+      <Destination ToolID="4" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="4" Connection="Output" />
+      <Destination ToolID="6" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="6" Connection="Output" />
+      <Destination ToolID="7" Connection="Input2" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="14" Connection="Output" />
+      <Destination ToolID="15" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="15" Connection="True" />
+      <Destination ToolID="16" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="15" Connection="False" />
+      <Destination ToolID="17" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="7" Connection="Output26" />
+      <Destination ToolID="14" Connection="Input" />
+    </Connection>
+  </Connections>
+  <Properties>
+    <Memory default="True" />
+    <GlobalRecordLimit value="0" />
+    <TempFiles default="True" />
+    <Annotation on="True" includeToolName="False" />
+    <ConvErrorLimit value="10" />
+    <ConvErrorLimit_Stop value="False" />
+    <CancelOnError value="False" />
+    <DisableBrowse value="False" />
+    <EnablePerformanceProfiling value="False" />
+    <RunWithE2 value="True" />
+    <PredictiveToolsCodePage value="1252" />
+    <DisableAllOutput value="False" />
+    <ShowAllMacroMessages value="False" />
+    <ShowConnectionStatusIsOn value="True" />
+    <ShowConnectionStatusOnlyWhenRunning value="True" />
+    <ZoomLevel value="0" />
+    <LayoutType>Horizontal</LayoutType>
+    <MetaInfo>
+      <NameIsFileName value="True" />
+      <Name>Workflow2 (Running)_Autosave</Name>
+      <Description />
+      <RootToolName />
+      <ToolVersion />
+      <ToolInDb value="False" />
+      <CategoryName />
+      <SearchTags />
+      <Author />
+      <Company />
+      <Copyright />
+      <DescriptionLink actual="" displayed="" />
+      <Example>
+        <Description />
+        <File />
+      </Example>
+      <WorkflowId value="2e121c78-21f9-48cd-a7fc-0a06744f2fd6" />
+      <Telemetry>
+        <PreviousWorkflowId value="eb94a60a-76c3-4d1e-a418-4e7943131945" />
+        <OriginWorkflowId value="eb94a60a-76c3-4d1e-a418-4e7943131945" />
+      </Telemetry>
+    </MetaInfo>
+    <Events>
+      <Enabled value="True" />
+    </Events>
+  </Properties>
+</AlteryxDocument>

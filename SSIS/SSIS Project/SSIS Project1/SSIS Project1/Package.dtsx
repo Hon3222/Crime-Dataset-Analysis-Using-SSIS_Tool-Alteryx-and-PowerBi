@@ -1,0 +1,1707 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="4/24/2023 5:03:33 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-NNKF398"
+  DTS:CreatorName="DESKTOP-NNKF398\hanyy"
+  DTS:DTSID="{7D990832-4229-448F-BE00-A67E2E814D34}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.170"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Package"
+  DTS:PackageType="5"
+  DTS:VersionBuild="8"
+  DTS:VersionGUID="{CC62308B-B359-4839-AB86-C5ADDD108502}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[DESKTOP-NNKF398\MSSQLSERVER02.Part One]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{4A37C6F5-36DC-4D8F-BB40-A82A1E005CC9}"
+      DTS:ObjectName="DESKTOP-NNKF398\MSSQLSERVER02.Part One">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=DESKTOP-NNKF398\MSSQLSERVER02;Initial Catalog=Part One;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[DESKTOP-NNKF398\MSSQLSERVER02.Part Two]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{1BDD3229-ED97-4CF8-8C91-6DBBA3874B69}"
+      DTS:ObjectName="DESKTOP-NNKF398\MSSQLSERVER02.Part Two">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=DESKTOP-NNKF398\MSSQLSERVER02;Initial Catalog=Part Two;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Excel Connection Manager]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{09195A99-AB7C-4610-A968-0B1F0A358475}"
+      DTS:ObjectName="Excel Connection Manager">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="0"
+          DTS:ConnectRetryInterval="0"
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\hanyy\OneDrive\Desktop\SSIS\SSIS-Crime Dataset.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\SSIS Task"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{245FC2B9-0163-49EA-89D8-65CDD271BF2A}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SSIS Task"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\SSIS Task\Conditional Split"
+              componentClassID="Microsoft.ConditionalSplit"
+              contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Routes data rows to different outputs depending on the content of the data. Use conditions (SSIS expressions) to specify which rows are routed. For example, separate records that need to be cleaned from those that are ready to be loaded or route only a subset of records."
+              name="Conditional Split"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\SSIS Task\Conditional Split.Inputs[Conditional Split Input]"
+                  description="Input to the Conditional Split Transformation"
+                  name="Conditional Split Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\SSIS Task\Conditional Split.Inputs[Conditional Split Input].Columns[Crime_ID]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Crime_ID"
+                      lineageId="Package\SSIS Task\SSIS Dataset.Outputs[Excel Source Output].Columns[Crime_ID]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\SSIS Task\Conditional Split.Outputs[5th_Char-&gt;&quot;8&quot;]"
+                  description="Output 1 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="5th_Char-&gt;&quot;8&quot;"
+                  synchronousInputId="Package\SSIS Task\Conditional Split.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">[SUBSTRING](#{Package\SSIS Task\SSIS Dataset.Outputs[Excel Source Output].Columns[Crime_ID]},5,1) == "8"</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">SUBSTRING(Crime_ID,5,1) == "8"</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">0</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\SSIS Task\Conditional Split.Outputs[5th_Char-&gt;&quot;0&quot;]"
+                  description="Output 2 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="5th_Char-&gt;&quot;0&quot;"
+                  synchronousInputId="Package\SSIS Task\Conditional Split.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">[SUBSTRING](#{Package\SSIS Task\SSIS Dataset.Outputs[Excel Source Output].Columns[Crime_ID]},5,1) == "0"</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">SUBSTRING(Crime_ID,5,1) == "0"</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">1</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\SSIS Task\Conditional Split.Outputs[Conditional Split Default Output]"
+                  description="Default Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  name="Conditional Split Default Output"
+                  synchronousInputId="Package\SSIS Task\Conditional Split.Inputs[Conditional Split Input]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="IsDefaultOut">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\SSIS Task\Conditional Split.Outputs[Conditional Split Error Output]"
+                  description="Error Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Conditional Split Error Output"
+                  synchronousInputId="Package\SSIS Task\Conditional Split.Inputs[Conditional Split Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\SSIS Task\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\SSIS Task\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\SSIS Task\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\SSIS Task\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\SSIS Task\Part One (8)"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Part One (8)"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[Altreyx-SSIS Part One]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\SSIS Task\Part One (8).Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DESKTOP-NNKF398\MSSQLSERVER02.Part One]"
+                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-NNKF398\MSSQLSERVER02.Part One]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\SSIS Task\Part One (8).Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\SSIS Task\Part One (8).Inputs[OLE DB Destination Input].Columns[Crime_ID]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Crime_ID"
+                      externalMetadataColumnId="Package\SSIS Task\Part One (8).Inputs[OLE DB Destination Input].ExternalColumns[Crime ID]"
+                      lineageId="Package\SSIS Task\SSIS Dataset.Outputs[Excel Source Output].Columns[Crime_ID]" />
+                    <inputColumn
+                      refId="Package\SSIS Task\Part One (8).Inputs[OLE DB Destination Input].Columns[OCCURRED_TO]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="OCCURRED_TO"
+                      externalMetadataColumnId="Package\SSIS Task\Part One (8).Inputs[OLE DB Destination Input].ExternalColumns[Occurred To edited]"
+                      lineageId="Package\SSIS Task\SSIS Dataset.Outputs[Excel Source Output].Columns[OCCURRED_TO]" />
+                    <inputColumn
+                      refId="Package\SSIS Task\Part One (8).Inputs[OLE DB Destination Input].Columns[Address]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Address"
+                      externalMetadataColumnId="Package\SSIS Task\Part One (8).Inputs[OLE DB Destination Input].ExternalColumns[Address]"
+                      lineageId="Package\SSIS Task\SSIS Dataset.Outputs[Excel Source Output].Columns[Address]" />
+                    <inputColumn
+                      refId="Package\SSIS Task\Part One (8).Inputs[OLE DB Destination Input].Columns[ZIP Edited]"
+                      cachedDataType="ui4"
+                      cachedName="ZIP Edited"
+                      externalMetadataColumnId="Package\SSIS Task\Part One (8).Inputs[OLE DB Destination Input].ExternalColumns[ZIP]"
+                      lineageId="Package\SSIS Task\ZIP Conversion.Outputs[Data Conversion Output].Columns[ZIP Edited]" />
+                    <inputColumn
+                      refId="Package\SSIS Task\Part One (8).Inputs[OLE DB Destination Input].Columns[GRID]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="GRID"
+                      externalMetadataColumnId="Package\SSIS Task\Part One (8).Inputs[OLE DB Destination Input].ExternalColumns[GRID]"
+                      lineageId="Package\SSIS Task\SSIS Dataset.Outputs[Excel Source Output].Columns[GRID]" />
+                    <inputColumn
+                      refId="Package\SSIS Task\Part One (8).Inputs[OLE DB Destination Input].Columns[Occurred_On edited]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="Occurred_On edited"
+                      externalMetadataColumnId="Package\SSIS Task\Part One (8).Inputs[OLE DB Destination Input].ExternalColumns[Occurred On edited]"
+                      lineageId="Package\SSIS Task\Title Case.Outputs[Derived Column Output].Columns[Occurred_On edited]" />
+                    <inputColumn
+                      refId="Package\SSIS Task\Part One (8).Inputs[OLE DB Destination Input].Columns[OCC_ON Year]"
+                      cachedDataType="wstr"
+                      cachedLength="4"
+                      cachedName="OCC_ON Year"
+                      externalMetadataColumnId="Package\SSIS Task\Part One (8).Inputs[OLE DB Destination Input].ExternalColumns[OCC ON Year]"
+                      lineageId="Package\SSIS Task\Split OCCURRED_ON Date Column.Outputs[Derived Column Output].Columns[OCC_ON Year]" />
+                    <inputColumn
+                      refId="Package\SSIS Task\Part One (8).Inputs[OLE DB Destination Input].Columns[OCC_ON Month]"
+                      cachedDataType="wstr"
+                      cachedLength="2"
+                      cachedName="OCC_ON Month"
+                      externalMetadataColumnId="Package\SSIS Task\Part One (8).Inputs[OLE DB Destination Input].ExternalColumns[OCC ON Month]"
+                      lineageId="Package\SSIS Task\Split OCCURRED_ON Date Column.Outputs[Derived Column Output].Columns[OCC_ON Month]" />
+                    <inputColumn
+                      refId="Package\SSIS Task\Part One (8).Inputs[OLE DB Destination Input].Columns[OCC_ON Day]"
+                      cachedDataType="wstr"
+                      cachedLength="2"
+                      cachedName="OCC_ON Day"
+                      externalMetadataColumnId="Package\SSIS Task\Part One (8).Inputs[OLE DB Destination Input].ExternalColumns[OCC ON Day]"
+                      lineageId="Package\SSIS Task\Split OCCURRED_ON Date Column.Outputs[Derived Column Output].Columns[OCC_ON Day]" />
+                    <inputColumn
+                      refId="Package\SSIS Task\Part One (8).Inputs[OLE DB Destination Input].Columns[Location_TYPE]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Location_TYPE"
+                      externalMetadataColumnId="Package\SSIS Task\Part One (8).Inputs[OLE DB Destination Input].ExternalColumns[Location TYPE]"
+                      lineageId="Package\SSIS Task\SSIS Dataset.Outputs[Excel Source Output].Columns[Location_TYPE]" />
+                    <inputColumn
+                      refId="Package\SSIS Task\Part One (8).Inputs[OLE DB Destination Input].Columns[Crime_Category Tiltle Case]"
+                      cachedDataType="wstr"
+                      cachedLength="256"
+                      cachedName="Crime_Category Tiltle Case"
+                      externalMetadataColumnId="Package\SSIS Task\Part One (8).Inputs[OLE DB Destination Input].ExternalColumns[CRIME CATEGORY]"
+                      lineageId="Package\SSIS Task\Title Case.Outputs[Derived Column Output].Columns[Crime_Category Tiltle Case]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\SSIS Task\Part One (8).Inputs[OLE DB Destination Input].ExternalColumns[ZIP]"
+                      dataType="i8"
+                      name="ZIP" />
+                    <externalMetadataColumn
+                      refId="Package\SSIS Task\Part One (8).Inputs[OLE DB Destination Input].ExternalColumns[Crime ID]"
+                      dataType="wstr"
+                      length="255"
+                      name="Crime ID" />
+                    <externalMetadataColumn
+                      refId="Package\SSIS Task\Part One (8).Inputs[OLE DB Destination Input].ExternalColumns[CRIME CATEGORY]"
+                      dataType="wstr"
+                      length="255"
+                      name="CRIME CATEGORY" />
+                    <externalMetadataColumn
+                      refId="Package\SSIS Task\Part One (8).Inputs[OLE DB Destination Input].ExternalColumns[Address]"
+                      dataType="wstr"
+                      length="255"
+                      name="Address" />
+                    <externalMetadataColumn
+                      refId="Package\SSIS Task\Part One (8).Inputs[OLE DB Destination Input].ExternalColumns[Location TYPE]"
+                      dataType="wstr"
+                      length="255"
+                      name="Location TYPE" />
+                    <externalMetadataColumn
+                      refId="Package\SSIS Task\Part One (8).Inputs[OLE DB Destination Input].ExternalColumns[GRID]"
+                      dataType="wstr"
+                      length="255"
+                      name="GRID" />
+                    <externalMetadataColumn
+                      refId="Package\SSIS Task\Part One (8).Inputs[OLE DB Destination Input].ExternalColumns[Occurred On edited]"
+                      dataType="wstr"
+                      length="255"
+                      name="Occurred On edited" />
+                    <externalMetadataColumn
+                      refId="Package\SSIS Task\Part One (8).Inputs[OLE DB Destination Input].ExternalColumns[Occurred To edited]"
+                      dataType="wstr"
+                      length="255"
+                      name="Occurred To edited" />
+                    <externalMetadataColumn
+                      refId="Package\SSIS Task\Part One (8).Inputs[OLE DB Destination Input].ExternalColumns[OCC ON Day]"
+                      dataType="wstr"
+                      length="255"
+                      name="OCC ON Day" />
+                    <externalMetadataColumn
+                      refId="Package\SSIS Task\Part One (8).Inputs[OLE DB Destination Input].ExternalColumns[OCC ON Month]"
+                      dataType="wstr"
+                      length="255"
+                      name="OCC ON Month" />
+                    <externalMetadataColumn
+                      refId="Package\SSIS Task\Part One (8).Inputs[OLE DB Destination Input].ExternalColumns[OCC ON Year]"
+                      dataType="nText"
+                      name="OCC ON Year" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\SSIS Task\Part One (8).Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\SSIS Task\Part One (8).Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\SSIS Task\Part One (8).Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\SSIS Task\Part One (8).Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\SSIS Task\Part One (8).Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\SSIS Task\Part One (8).Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\SSIS Task\Part Two (0)"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Part Two (0)"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[Alteryx-SSIS Part Two]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\SSIS Task\Part Two (0).Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DESKTOP-NNKF398\MSSQLSERVER02.Part Two]"
+                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-NNKF398\MSSQLSERVER02.Part Two]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\SSIS Task\Part Two (0).Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\SSIS Task\Part Two (0).Inputs[OLE DB Destination Input].Columns[Address]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Address"
+                      externalMetadataColumnId="Package\SSIS Task\Part Two (0).Inputs[OLE DB Destination Input].ExternalColumns[Address]"
+                      lineageId="Package\SSIS Task\SSIS Dataset.Outputs[Excel Source Output].Columns[Address]" />
+                    <inputColumn
+                      refId="Package\SSIS Task\Part Two (0).Inputs[OLE DB Destination Input].Columns[GRID]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="GRID"
+                      externalMetadataColumnId="Package\SSIS Task\Part Two (0).Inputs[OLE DB Destination Input].ExternalColumns[GRID]"
+                      lineageId="Package\SSIS Task\SSIS Dataset.Outputs[Excel Source Output].Columns[GRID]" />
+                    <inputColumn
+                      refId="Package\SSIS Task\Part Two (0).Inputs[OLE DB Destination Input].Columns[ZIP Edited]"
+                      cachedDataType="ui4"
+                      cachedName="ZIP Edited"
+                      externalMetadataColumnId="Package\SSIS Task\Part Two (0).Inputs[OLE DB Destination Input].ExternalColumns[ZIP]"
+                      lineageId="Package\SSIS Task\ZIP Conversion.Outputs[Data Conversion Output].Columns[ZIP Edited]" />
+                    <inputColumn
+                      refId="Package\SSIS Task\Part Two (0).Inputs[OLE DB Destination Input].Columns[Crime_ID]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Crime_ID"
+                      externalMetadataColumnId="Package\SSIS Task\Part Two (0).Inputs[OLE DB Destination Input].ExternalColumns[Crime ID]"
+                      lineageId="Package\SSIS Task\SSIS Dataset.Outputs[Excel Source Output].Columns[Crime_ID]" />
+                    <inputColumn
+                      refId="Package\SSIS Task\Part Two (0).Inputs[OLE DB Destination Input].Columns[Crime_Category Tiltle Case]"
+                      cachedDataType="wstr"
+                      cachedLength="256"
+                      cachedName="Crime_Category Tiltle Case"
+                      externalMetadataColumnId="Package\SSIS Task\Part Two (0).Inputs[OLE DB Destination Input].ExternalColumns[CRIME CATEGORY]"
+                      lineageId="Package\SSIS Task\Title Case.Outputs[Derived Column Output].Columns[Crime_Category Tiltle Case]" />
+                    <inputColumn
+                      refId="Package\SSIS Task\Part Two (0).Inputs[OLE DB Destination Input].Columns[Location_TYPE]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Location_TYPE"
+                      externalMetadataColumnId="Package\SSIS Task\Part Two (0).Inputs[OLE DB Destination Input].ExternalColumns[Location TYPE]"
+                      lineageId="Package\SSIS Task\SSIS Dataset.Outputs[Excel Source Output].Columns[Location_TYPE]" />
+                    <inputColumn
+                      refId="Package\SSIS Task\Part Two (0).Inputs[OLE DB Destination Input].Columns[Occurred_On edited]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="Occurred_On edited"
+                      externalMetadataColumnId="Package\SSIS Task\Part Two (0).Inputs[OLE DB Destination Input].ExternalColumns[Occurred On edited]"
+                      lineageId="Package\SSIS Task\Title Case.Outputs[Derived Column Output].Columns[Occurred_On edited]" />
+                    <inputColumn
+                      refId="Package\SSIS Task\Part Two (0).Inputs[OLE DB Destination Input].Columns[OCCURRED_TO]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="OCCURRED_TO"
+                      externalMetadataColumnId="Package\SSIS Task\Part Two (0).Inputs[OLE DB Destination Input].ExternalColumns[Occurred To edited]"
+                      lineageId="Package\SSIS Task\SSIS Dataset.Outputs[Excel Source Output].Columns[OCCURRED_TO]" />
+                    <inputColumn
+                      refId="Package\SSIS Task\Part Two (0).Inputs[OLE DB Destination Input].Columns[OCC_ON Day]"
+                      cachedDataType="wstr"
+                      cachedLength="2"
+                      cachedName="OCC_ON Day"
+                      externalMetadataColumnId="Package\SSIS Task\Part Two (0).Inputs[OLE DB Destination Input].ExternalColumns[OCC ON Day]"
+                      lineageId="Package\SSIS Task\Split OCCURRED_ON Date Column.Outputs[Derived Column Output].Columns[OCC_ON Day]" />
+                    <inputColumn
+                      refId="Package\SSIS Task\Part Two (0).Inputs[OLE DB Destination Input].Columns[OCC_ON Month]"
+                      cachedDataType="wstr"
+                      cachedLength="2"
+                      cachedName="OCC_ON Month"
+                      externalMetadataColumnId="Package\SSIS Task\Part Two (0).Inputs[OLE DB Destination Input].ExternalColumns[OCC ON Month]"
+                      lineageId="Package\SSIS Task\Split OCCURRED_ON Date Column.Outputs[Derived Column Output].Columns[OCC_ON Month]" />
+                    <inputColumn
+                      refId="Package\SSIS Task\Part Two (0).Inputs[OLE DB Destination Input].Columns[OCC_ON Year]"
+                      cachedDataType="wstr"
+                      cachedLength="4"
+                      cachedName="OCC_ON Year"
+                      externalMetadataColumnId="Package\SSIS Task\Part Two (0).Inputs[OLE DB Destination Input].ExternalColumns[OCC ON Year]"
+                      lineageId="Package\SSIS Task\Split OCCURRED_ON Date Column.Outputs[Derived Column Output].Columns[OCC_ON Year]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\SSIS Task\Part Two (0).Inputs[OLE DB Destination Input].ExternalColumns[ZIP]"
+                      dataType="i8"
+                      name="ZIP" />
+                    <externalMetadataColumn
+                      refId="Package\SSIS Task\Part Two (0).Inputs[OLE DB Destination Input].ExternalColumns[Crime ID]"
+                      dataType="wstr"
+                      length="255"
+                      name="Crime ID" />
+                    <externalMetadataColumn
+                      refId="Package\SSIS Task\Part Two (0).Inputs[OLE DB Destination Input].ExternalColumns[CRIME CATEGORY]"
+                      dataType="wstr"
+                      length="255"
+                      name="CRIME CATEGORY" />
+                    <externalMetadataColumn
+                      refId="Package\SSIS Task\Part Two (0).Inputs[OLE DB Destination Input].ExternalColumns[Address]"
+                      dataType="wstr"
+                      length="255"
+                      name="Address" />
+                    <externalMetadataColumn
+                      refId="Package\SSIS Task\Part Two (0).Inputs[OLE DB Destination Input].ExternalColumns[Location TYPE]"
+                      dataType="wstr"
+                      length="255"
+                      name="Location TYPE" />
+                    <externalMetadataColumn
+                      refId="Package\SSIS Task\Part Two (0).Inputs[OLE DB Destination Input].ExternalColumns[GRID]"
+                      dataType="wstr"
+                      length="255"
+                      name="GRID" />
+                    <externalMetadataColumn
+                      refId="Package\SSIS Task\Part Two (0).Inputs[OLE DB Destination Input].ExternalColumns[Occurred On edited]"
+                      dataType="wstr"
+                      length="255"
+                      name="Occurred On edited" />
+                    <externalMetadataColumn
+                      refId="Package\SSIS Task\Part Two (0).Inputs[OLE DB Destination Input].ExternalColumns[Occurred To edited]"
+                      dataType="wstr"
+                      length="255"
+                      name="Occurred To edited" />
+                    <externalMetadataColumn
+                      refId="Package\SSIS Task\Part Two (0).Inputs[OLE DB Destination Input].ExternalColumns[OCC ON Day]"
+                      dataType="wstr"
+                      length="255"
+                      name="OCC ON Day" />
+                    <externalMetadataColumn
+                      refId="Package\SSIS Task\Part Two (0).Inputs[OLE DB Destination Input].ExternalColumns[OCC ON Month]"
+                      dataType="wstr"
+                      length="255"
+                      name="OCC ON Month" />
+                    <externalMetadataColumn
+                      refId="Package\SSIS Task\Part Two (0).Inputs[OLE DB Destination Input].ExternalColumns[OCC ON Year]"
+                      dataType="nText"
+                      name="OCC ON Year" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\SSIS Task\Part Two (0).Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\SSIS Task\Part Two (0).Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\SSIS Task\Part Two (0).Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\SSIS Task\Part Two (0).Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\SSIS Task\Part Two (0).Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\SSIS Task\Part Two (0).Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\SSIS Task\Replace WhiteSpace"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Replace WhiteSpace"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\SSIS Task\Replace WhiteSpace.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\SSIS Task\Replace WhiteSpace.Inputs[Derived Column Input].Columns[Address]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Address"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\SSIS Task\SSIS Dataset.Outputs[Excel Source Output].Columns[Address]"
+                      truncationRowDisposition="FailComponent"
+                      usageType="readWrite">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[REPLACE](#{Package\SSIS Task\SSIS Dataset.Outputs[Excel Source Output].Columns[Address]}," ","_")</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">REPLACE(Address," ","_")</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\SSIS Task\Replace WhiteSpace.Inputs[Derived Column Input].Columns[Location_TYPE]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Location_TYPE"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\SSIS Task\SSIS Dataset.Outputs[Excel Source Output].Columns[Location_TYPE]"
+                      truncationRowDisposition="FailComponent"
+                      usageType="readWrite">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[REPLACE](#{Package\SSIS Task\SSIS Dataset.Outputs[Excel Source Output].Columns[Location_TYPE]}," ","_")</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">REPLACE(Location_TYPE," ","_")</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\SSIS Task\Replace WhiteSpace.Inputs[Derived Column Input].Columns[Crime_Category Tiltle Case]"
+                      cachedDataType="wstr"
+                      cachedLength="256"
+                      cachedName="Crime_Category Tiltle Case"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\SSIS Task\Title Case.Outputs[Derived Column Output].Columns[Crime_Category Tiltle Case]"
+                      truncationRowDisposition="FailComponent"
+                      usageType="readWrite">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[REPLACE](#{Package\SSIS Task\Title Case.Outputs[Derived Column Output].Columns[Crime_Category Tiltle Case]}," ","_")</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">REPLACE([Crime_Category Tiltle Case]," ","_")</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\SSIS Task\Replace WhiteSpace.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\SSIS Task\Replace WhiteSpace.Inputs[Derived Column Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\SSIS Task\Replace WhiteSpace.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\SSIS Task\Replace WhiteSpace.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\SSIS Task\Replace WhiteSpace.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\SSIS Task\Replace WhiteSpace.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\SSIS Task\Replace WhiteSpace.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\SSIS Task\Replace WhiteSpace.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\SSIS Task\Split OCCURRED_ON Date Column"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Split OCCURRED_ON Date Column"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\SSIS Task\Split OCCURRED_ON Date Column.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\SSIS Task\Split OCCURRED_ON Date Column.Inputs[Derived Column Input].Columns[Occurred_On edited]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="Occurred_On edited"
+                      lineageId="Package\SSIS Task\Title Case.Outputs[Derived Column Output].Columns[Occurred_On edited]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\SSIS Task\Split OCCURRED_ON Date Column.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\SSIS Task\Split OCCURRED_ON Date Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\SSIS Task\Split OCCURRED_ON Date Column.Outputs[Derived Column Output].Columns[OCC_ON Day]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="2"
+                      lineageId="Package\SSIS Task\Split OCCURRED_ON Date Column.Outputs[Derived Column Output].Columns[OCC_ON Day]"
+                      name="OCC_ON Day"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[SUBSTRING](#{Package\SSIS Task\Title Case.Outputs[Derived Column Output].Columns[Occurred_On edited]},1,2)</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">SUBSTRING([Occurred_On edited],1,2)</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\SSIS Task\Split OCCURRED_ON Date Column.Outputs[Derived Column Output].Columns[OCC_ON Month]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="2"
+                      lineageId="Package\SSIS Task\Split OCCURRED_ON Date Column.Outputs[Derived Column Output].Columns[OCC_ON Month]"
+                      name="OCC_ON Month"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[SUBSTRING](#{Package\SSIS Task\Title Case.Outputs[Derived Column Output].Columns[Occurred_On edited]},4,2)</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">SUBSTRING([Occurred_On edited],4,2)</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\SSIS Task\Split OCCURRED_ON Date Column.Outputs[Derived Column Output].Columns[OCC_ON Year]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="4"
+                      lineageId="Package\SSIS Task\Split OCCURRED_ON Date Column.Outputs[Derived Column Output].Columns[OCC_ON Year]"
+                      name="OCC_ON Year"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[SUBSTRING](#{Package\SSIS Task\Title Case.Outputs[Derived Column Output].Columns[Occurred_On edited]},7,4)</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">SUBSTRING([Occurred_On edited],7,4)</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\SSIS Task\Split OCCURRED_ON Date Column.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\SSIS Task\Split OCCURRED_ON Date Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\SSIS Task\Split OCCURRED_ON Date Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\SSIS Task\Split OCCURRED_ON Date Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\SSIS Task\Split OCCURRED_ON Date Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\SSIS Task\Split OCCURRED_ON Date Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\SSIS Task\SSIS Dataset"
+              componentClassID="Microsoft.ExcelSource"
+              contactInfo="Excel Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Excel Source"
+              name="SSIS Dataset"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">'SSIS-Crime Dataset$'</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mapping from parameters in the SQL command to variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\SSIS Task\SSIS Dataset.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Excel Connection Manager]"
+                  connectionManagerRefId="Package.ConnectionManagers[Excel Connection Manager]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\SSIS Task\SSIS Dataset.Outputs[Excel Source Output]"
+                  name="Excel Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\SSIS Task\SSIS Dataset.Outputs[Excel Source Output].Columns[Crime_ID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SSIS Task\SSIS Dataset.Outputs[Excel Source Output].ExternalColumns[Crime ID]"
+                      length="255"
+                      lineageId="Package\SSIS Task\SSIS Dataset.Outputs[Excel Source Output].Columns[Crime_ID]"
+                      name="Crime_ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SSIS Task\SSIS Dataset.Outputs[Excel Source Output].Columns[OCCURRED_ON]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SSIS Task\SSIS Dataset.Outputs[Excel Source Output].ExternalColumns[OCCURRED ON]"
+                      length="255"
+                      lineageId="Package\SSIS Task\SSIS Dataset.Outputs[Excel Source Output].Columns[OCCURRED_ON]"
+                      name="OCCURRED_ON"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SSIS Task\SSIS Dataset.Outputs[Excel Source Output].Columns[OCCURRED_TO]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SSIS Task\SSIS Dataset.Outputs[Excel Source Output].ExternalColumns[OCCURRED TO]"
+                      length="255"
+                      lineageId="Package\SSIS Task\SSIS Dataset.Outputs[Excel Source Output].Columns[OCCURRED_TO]"
+                      name="OCCURRED_TO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SSIS Task\SSIS Dataset.Outputs[Excel Source Output].Columns[CRIME_CATEGORY]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SSIS Task\SSIS Dataset.Outputs[Excel Source Output].ExternalColumns[CRIME CATEGORY]"
+                      length="255"
+                      lineageId="Package\SSIS Task\SSIS Dataset.Outputs[Excel Source Output].Columns[CRIME_CATEGORY]"
+                      name="CRIME_CATEGORY"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SSIS Task\SSIS Dataset.Outputs[Excel Source Output].Columns[Address]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SSIS Task\SSIS Dataset.Outputs[Excel Source Output].ExternalColumns[Address]"
+                      length="255"
+                      lineageId="Package\SSIS Task\SSIS Dataset.Outputs[Excel Source Output].Columns[Address]"
+                      name="Address"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SSIS Task\SSIS Dataset.Outputs[Excel Source Output].Columns[ZIP]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SSIS Task\SSIS Dataset.Outputs[Excel Source Output].ExternalColumns[ZIP]"
+                      lineageId="Package\SSIS Task\SSIS Dataset.Outputs[Excel Source Output].Columns[ZIP]"
+                      name="ZIP"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SSIS Task\SSIS Dataset.Outputs[Excel Source Output].Columns[Location_TYPE]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SSIS Task\SSIS Dataset.Outputs[Excel Source Output].ExternalColumns[Location TYPE]"
+                      length="255"
+                      lineageId="Package\SSIS Task\SSIS Dataset.Outputs[Excel Source Output].Columns[Location_TYPE]"
+                      name="Location_TYPE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SSIS Task\SSIS Dataset.Outputs[Excel Source Output].Columns[GRID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SSIS Task\SSIS Dataset.Outputs[Excel Source Output].ExternalColumns[GRID]"
+                      length="255"
+                      lineageId="Package\SSIS Task\SSIS Dataset.Outputs[Excel Source Output].Columns[GRID]"
+                      name="GRID"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\SSIS Task\SSIS Dataset.Outputs[Excel Source Output].ExternalColumns[Crime ID]"
+                      dataType="wstr"
+                      length="255"
+                      name="Crime ID" />
+                    <externalMetadataColumn
+                      refId="Package\SSIS Task\SSIS Dataset.Outputs[Excel Source Output].ExternalColumns[OCCURRED ON]"
+                      dataType="wstr"
+                      length="255"
+                      name="OCCURRED ON" />
+                    <externalMetadataColumn
+                      refId="Package\SSIS Task\SSIS Dataset.Outputs[Excel Source Output].ExternalColumns[OCCURRED TO]"
+                      dataType="wstr"
+                      length="255"
+                      name="OCCURRED TO" />
+                    <externalMetadataColumn
+                      refId="Package\SSIS Task\SSIS Dataset.Outputs[Excel Source Output].ExternalColumns[CRIME CATEGORY]"
+                      dataType="wstr"
+                      length="255"
+                      name="CRIME CATEGORY" />
+                    <externalMetadataColumn
+                      refId="Package\SSIS Task\SSIS Dataset.Outputs[Excel Source Output].ExternalColumns[Address]"
+                      dataType="wstr"
+                      length="255"
+                      name="Address" />
+                    <externalMetadataColumn
+                      refId="Package\SSIS Task\SSIS Dataset.Outputs[Excel Source Output].ExternalColumns[ZIP]"
+                      dataType="r8"
+                      name="ZIP" />
+                    <externalMetadataColumn
+                      refId="Package\SSIS Task\SSIS Dataset.Outputs[Excel Source Output].ExternalColumns[Location TYPE]"
+                      dataType="wstr"
+                      length="255"
+                      name="Location TYPE" />
+                    <externalMetadataColumn
+                      refId="Package\SSIS Task\SSIS Dataset.Outputs[Excel Source Output].ExternalColumns[GRID]"
+                      dataType="wstr"
+                      length="255"
+                      name="GRID" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\SSIS Task\SSIS Dataset.Outputs[Excel Source Error Output]"
+                  isErrorOut="true"
+                  name="Excel Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\SSIS Task\SSIS Dataset.Outputs[Excel Source Error Output].Columns[Crime ID]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\SSIS Task\SSIS Dataset.Outputs[Excel Source Error Output].Columns[Crime ID]"
+                      name="Crime ID" />
+                    <outputColumn
+                      refId="Package\SSIS Task\SSIS Dataset.Outputs[Excel Source Error Output].Columns[OCCURRED ON]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\SSIS Task\SSIS Dataset.Outputs[Excel Source Error Output].Columns[OCCURRED ON]"
+                      name="OCCURRED ON" />
+                    <outputColumn
+                      refId="Package\SSIS Task\SSIS Dataset.Outputs[Excel Source Error Output].Columns[OCCURRED TO]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\SSIS Task\SSIS Dataset.Outputs[Excel Source Error Output].Columns[OCCURRED TO]"
+                      name="OCCURRED TO" />
+                    <outputColumn
+                      refId="Package\SSIS Task\SSIS Dataset.Outputs[Excel Source Error Output].Columns[CRIME CATEGORY]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\SSIS Task\SSIS Dataset.Outputs[Excel Source Error Output].Columns[CRIME CATEGORY]"
+                      name="CRIME CATEGORY" />
+                    <outputColumn
+                      refId="Package\SSIS Task\SSIS Dataset.Outputs[Excel Source Error Output].Columns[Address]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\SSIS Task\SSIS Dataset.Outputs[Excel Source Error Output].Columns[Address]"
+                      name="Address" />
+                    <outputColumn
+                      refId="Package\SSIS Task\SSIS Dataset.Outputs[Excel Source Error Output].Columns[ZIP]"
+                      dataType="r8"
+                      lineageId="Package\SSIS Task\SSIS Dataset.Outputs[Excel Source Error Output].Columns[ZIP]"
+                      name="ZIP" />
+                    <outputColumn
+                      refId="Package\SSIS Task\SSIS Dataset.Outputs[Excel Source Error Output].Columns[Location TYPE]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\SSIS Task\SSIS Dataset.Outputs[Excel Source Error Output].Columns[Location TYPE]"
+                      name="Location TYPE" />
+                    <outputColumn
+                      refId="Package\SSIS Task\SSIS Dataset.Outputs[Excel Source Error Output].Columns[GRID]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\SSIS Task\SSIS Dataset.Outputs[Excel Source Error Output].Columns[GRID]"
+                      name="GRID" />
+                    <outputColumn
+                      refId="Package\SSIS Task\SSIS Dataset.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\SSIS Task\SSIS Dataset.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\SSIS Task\SSIS Dataset.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\SSIS Task\SSIS Dataset.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\SSIS Task\Title Case"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Title Case"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\SSIS Task\Title Case.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\SSIS Task\Title Case.Inputs[Derived Column Input].Columns[OCCURRED_ON]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="OCCURRED_ON"
+                      lineageId="Package\SSIS Task\SSIS Dataset.Outputs[Excel Source Output].Columns[OCCURRED_ON]" />
+                    <inputColumn
+                      refId="Package\SSIS Task\Title Case.Inputs[Derived Column Input].Columns[CRIME_CATEGORY]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="CRIME_CATEGORY"
+                      lineageId="Package\SSIS Task\SSIS Dataset.Outputs[Excel Source Output].Columns[CRIME_CATEGORY]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\SSIS Task\Title Case.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\SSIS Task\Title Case.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\SSIS Task\Title Case.Outputs[Derived Column Output].Columns[Occurred_On edited]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="10"
+                      lineageId="Package\SSIS Task\Title Case.Outputs[Derived Column Output].Columns[Occurred_On edited]"
+                      name="Occurred_On edited"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[SUBSTRING](#{Package\SSIS Task\SSIS Dataset.Outputs[Excel Source Output].Columns[OCCURRED_ON]},4,2) + "-" + [SUBSTRING](#{Package\SSIS Task\SSIS Dataset.Outputs[Excel Source Output].Columns[OCCURRED_ON]},1,2) + "-" + [SUBSTRING](#{Package\SSIS Task\SSIS Dataset.Outputs[Excel Source Output].Columns[OCCURRED_ON]},7,4)</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">SUBSTRING(OCCURRED_ON,4,2) + "-" + SUBSTRING(OCCURRED_ON,1,2) + "-" + SUBSTRING(OCCURRED_ON,7,4)</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\SSIS Task\Title Case.Outputs[Derived Column Output].Columns[Crime_Category Tiltle Case]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="256"
+                      lineageId="Package\SSIS Task\Title Case.Outputs[Derived Column Output].Columns[Crime_Category Tiltle Case]"
+                      name="Crime_Category Tiltle Case"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[UPPER]([LEFT](#{Package\SSIS Task\SSIS Dataset.Outputs[Excel Source Output].Columns[CRIME_CATEGORY]},1)) + [LOWER]([RIGHT](#{Package\SSIS Task\SSIS Dataset.Outputs[Excel Source Output].Columns[CRIME_CATEGORY]},[LEN](#{Package\SSIS Task\SSIS Dataset.Outputs[Excel Source Output].Columns[CRIME_CATEGORY]}) - 1))</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">UPPER(LEFT(CRIME_CATEGORY,1)) + LOWER(RIGHT(CRIME_CATEGORY,LEN(CRIME_CATEGORY) - 1))</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\SSIS Task\Title Case.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\SSIS Task\Title Case.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\SSIS Task\Title Case.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\SSIS Task\Title Case.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\SSIS Task\Title Case.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\SSIS Task\Title Case.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\SSIS Task\ZIP Conversion"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="ZIP Conversion"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\SSIS Task\ZIP Conversion.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\SSIS Task\ZIP Conversion.Inputs[Data Conversion Input].Columns[ZIP]"
+                      cachedDataType="r8"
+                      cachedName="ZIP"
+                      lineageId="Package\SSIS Task\SSIS Dataset.Outputs[Excel Source Output].Columns[ZIP]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\SSIS Task\ZIP Conversion.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\SSIS Task\ZIP Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\SSIS Task\ZIP Conversion.Outputs[Data Conversion Output].Columns[ZIP Edited]"
+                      dataType="ui4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\SSIS Task\ZIP Conversion.Outputs[Data Conversion Output].Columns[ZIP Edited]"
+                      name="ZIP Edited"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\SSIS Task\SSIS Dataset.Outputs[Excel Source Output].Columns[ZIP]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\SSIS Task\ZIP Conversion.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\SSIS Task\ZIP Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\SSIS Task\ZIP Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\SSIS Task\ZIP Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\SSIS Task\ZIP Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\SSIS Task\ZIP Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\SSIS Task.Paths[5th_Char-&gt;&quot;0&quot;]"
+              endId="Package\SSIS Task\Part Two (0).Inputs[OLE DB Destination Input]"
+              name="5th_Char-&gt;&quot;0&quot;"
+              startId="Package\SSIS Task\Conditional Split.Outputs[5th_Char-&gt;&quot;0&quot;]" />
+            <path
+              refId="Package\SSIS Task.Paths[5th_Char-&gt;&quot;8&quot;]"
+              endId="Package\SSIS Task\Part One (8).Inputs[OLE DB Destination Input]"
+              name="5th_Char-&gt;&quot;8&quot;"
+              startId="Package\SSIS Task\Conditional Split.Outputs[5th_Char-&gt;&quot;8&quot;]" />
+            <path
+              refId="Package\SSIS Task.Paths[Data Conversion Output]"
+              endId="Package\SSIS Task\Title Case.Inputs[Derived Column Input]"
+              name="Data Conversion Output"
+              startId="Package\SSIS Task\ZIP Conversion.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\SSIS Task.Paths[Derived Column Output]"
+              endId="Package\SSIS Task\Split OCCURRED_ON Date Column.Inputs[Derived Column Input]"
+              name="Derived Column Output"
+              startId="Package\SSIS Task\Title Case.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\SSIS Task.Paths[Derived Column Output1]"
+              endId="Package\SSIS Task\Replace WhiteSpace.Inputs[Derived Column Input]"
+              name="Derived Column Output"
+              startId="Package\SSIS Task\Split OCCURRED_ON Date Column.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\SSIS Task.Paths[Derived Column Output2]"
+              endId="Package\SSIS Task\Conditional Split.Inputs[Conditional Split Input]"
+              name="Derived Column Output"
+              startId="Package\SSIS Task\Replace WhiteSpace.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\SSIS Task.Paths[Excel Source Output]"
+              endId="Package\SSIS Task\ZIP Conversion.Inputs[Data Conversion Input]"
+              name="Excel Source Output"
+              startId="Package\SSIS Task\SSIS Dataset.Outputs[Excel Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="125.6,41.6"
+          Id="Package\SSIS Task"
+          TopLeft="121.428573496488,69.5882362700664" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\SSIS Task">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="124,41.6"
+          Id="Package\SSIS Task\Title Case"
+          TopLeft="339.285720063716,39.764706440038" />
+        <NodeLayout
+          Size="149.6,41.6"
+          Id="Package\SSIS Task\ZIP Conversion"
+          TopLeft="175.000002980232,39.0000005469603" />
+        <NodeLayout
+          Size="139.2,41.6"
+          Id="Package\SSIS Task\SSIS Dataset"
+          TopLeft="29.2857147844471,37.4705887608049" />
+        <EdgeLayout
+          Id="Package\SSIS Task.Paths[Excel Source Output]"
+          TopLeft="98.8857147844471,37.4705887608049">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="127.314288195785,1.52941178615541"
+              Start="0,0"
+              End="127.314288195785,-5.97058821384459">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,-18.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,-18.5"
+                    Point2="0,-22.5"
+                    Point3="4,-22.5" />
+                  <mssgle:LineSegment
+                    End="123.314288195785,-22.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="123.314288195785,-22.5"
+                    Point2="127.314288195785,-22.5"
+                    Point3="127.314288195785,-18.5" />
+                  <mssgle:LineSegment
+                    End="127.314288195785,-5.97058821384459" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\SSIS Task.Paths[Data Conversion Output]"
+          TopLeft="273.400002980232,39.0000005469603">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="127.885717083484,0.764705893077689"
+              Start="0,0"
+              End="127.885717083484,-6.73529410692231">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,-18.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,-18.5"
+                    Point2="0,-22.5"
+                    Point3="4,-22.5" />
+                  <mssgle:LineSegment
+                    End="123.885717083484,-22.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="123.885717083484,-22.5"
+                    Point2="127.885717083484,-22.5"
+                    Point3="127.885717083484,-18.5" />
+                  <mssgle:LineSegment
+                    End="127.885717083484,-6.73529410692231" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="240.8,41.6"
+          Id="Package\SSIS Task\Split OCCURRED_ON Date Column"
+          TopLeft="471.428579456953,40.3647062577178" />
+        <EdgeLayout
+          Id="Package\SSIS Task.Paths[Derived Column Output]"
+          TopLeft="420.619053397049,39.764706440038">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="171.209526059903,0.599999817679844"
+              Start="0,0"
+              End="171.209526059903,-6.90000018232016">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,-18.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,-18.5"
+                    Point2="0,-22.5"
+                    Point3="4,-22.5" />
+                  <mssgle:LineSegment
+                    End="167.209526059903,-22.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="167.209526059903,-22.5"
+                    Point2="171.209526059903,-22.5"
+                    Point3="171.209526059903,-18.5" />
+                  <mssgle:LineSegment
+                    End="171.209526059903,-6.90000018232016" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="173.6,41.6"
+          Id="Package\SSIS Task\Replace WhiteSpace"
+          TopLeft="247.142861351675,110.117648603182" />
+        <EdgeLayout
+          Id="Package\SSIS Task.Paths[Derived Column Output1]"
+          TopLeft="591.828579456953,81.9647062577178">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-257.885718105278,28.1529423454642"
+              Start="0,0"
+              End="-257.885718105278,20.6529423454642">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,10.0764711727321" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,10.0764711727321"
+                    Point2="0,14.0764711727321"
+                    Point3="-4,14.0764711727321" />
+                  <mssgle:LineSegment
+                    End="-253.885718105278,14.0764711727321" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-253.885718105278,14.0764711727321"
+                    Point2="-257.885718105278,14.0764711727321"
+                    Point3="-257.885718105278,18.0764711727321" />
+                  <mssgle:LineSegment
+                    End="-257.885718105278,20.6529423454642" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="154.4,41.6"
+          Id="Package\SSIS Task\Conditional Split"
+          TopLeft="257.857147248424,187.352943804025" />
+        <EdgeLayout
+          Id="Package\SSIS Task.Paths[Derived Column Output2]"
+          TopLeft="334.500004300049,151.717648603182">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,35.6352952008428"
+              Start="0,0"
+              End="0,28.1352952008428">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28.1352952008428" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="136.8,41.6"
+          Id="Package\SSIS Task\Part One (8)"
+          TopLeft="116.071430548113,279.117650973343" />
+        <NodeLayout
+          Size="137.6,41.6"
+          Id="Package\SSIS Task\Part Two (0)"
+          TopLeft="381.250006492649,281.485297616584" />
+        <EdgeLayout
+          Id="Package\SSIS Task.Paths[5th_Char-&gt;&quot;8&quot;]"
+          TopLeft="310.657147248424,228.952943804025">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-126.185716700311,50.1647071693182"
+              Start="0,0"
+              End="-126.185716700311,42.6647071693182">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16.374588758" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,16.374588758"
+                    Point2="0,20.374588758"
+                    Point3="-4,20.374588758" />
+                  <mssgle:LineSegment
+                    End="-122.185716700311,20.374588758" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-122.185716700311,20.374588758"
+                    Point2="-126.185716700311,20.374588758"
+                    Point3="-126.185716700311,24.374588758" />
+                  <mssgle:LineSegment
+                    End="-126.185716700311,42.6647071693182" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-95.8486396001553,25.374588758,65.5115625,11.0625"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\SSIS Task.Paths[5th_Char-&gt;&quot;0&quot;]"
+          TopLeft="359.457147248424,228.952943804025">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="90.5928592442248,52.5323538125591"
+              Start="0,0"
+              End="90.5928592442248,45.0323538125591">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,17.3362175484855" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,17.3362175484855"
+                    Point2="0,21.3362175484855"
+                    Point3="4,21.3362175484855" />
+                  <mssgle:LineSegment
+                    End="86.5928592442248,21.3362175484855" />
+                  <mssgle:CubicBezierSegment
+                    Point1="86.5928592442248,21.3362175484855"
+                    Point2="90.5928592442248,21.3362175484855"
+                    Point3="90.5928592442248,25.3362175484855" />
+                  <mssgle:LineSegment
+                    End="90.5928592442248,45.0323538125591" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="12.5406483721124,26.3362175484855,65.5115625,11.0625"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\SSIS Task\SSIS Dataset">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\SSIS Task\Part One (8)">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\SSIS Task\Part Two (0)">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
